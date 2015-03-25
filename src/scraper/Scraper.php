@@ -1,64 +1,60 @@
 <?php
 
-namespace kalkulus\Comics;
+namespace kalkulus\Scraper;
 
-use kalkulus\Comics\Comic;
-
-class ComicsScraper {
+class Scraper {
 	
-	private $comics;
+	private $pages;
 
 	/**
-	 * Batch process comics
+	 * Batch process pages
 	 */
 	private $batch = false;
 
 	/**
-	 * Render comics function
+	 * Render pages function
 	 */
 	private $render;
 
-	public function __construct($batch, $render){
-		$this->batch = $batch;
-		$this->render = $render;
+	public function __construct(){		
 	}
 
-	public function addComic(Comic $comic){
-		$comics[$comic->getName()] = $comic;
+	public function addPage(Page $page){
+		$pages[$page->getName()] = $page;
 
 		if (!$batch){
-			$comic->scrape($comic);
+			$page->$scrape();
 		}
 	}
 
-	public function removeComic($comicName){
+	public function removePage($pageName){
 		
 	}
 
 	public function show(){		
-		if ($batch){
+		if ($this->batch){
 			$this->scrape();
 		}
 
-		$this->render($this->getComics());
+		$this->render($this->getPages());
 	}
 
 	private function scrape(){
 		if ($batch){
-			foreach ($comics as $name => $comic) {
-				$comic->scrape();
+			foreach ($pages as $name => $page) {
+				$page->scrape();
 			}
 		}
 	}
 
     /**
-     * Gets the value of comics.
+     * Gets the value of pages.
      *
      * @return mixed
      */
-    public function getComics()
+    public function getPages()
     {
-        return $this->comics;
+        return $this->pages;
     }
 
     /**
@@ -78,7 +74,7 @@ class ComicsScraper {
      *
      * @return self
      */
-    private function _setBatch($batch)
+    public function setBatch($batch)
     {
         $this->batch = $batch;
 
@@ -92,10 +88,19 @@ class ComicsScraper {
      *
      * @return self
      */
-    private function _setRender($render)
+    public function setRender($render)
     {
         $this->render = $render;
 
         return $this;
     }
+
+    public function __call($method, $args) {
+     if(isset($this->$method) && is_callable($this->$method)) {
+         return call_user_func_array(
+             $this->$method, 
+             $args
+         );
+     }
+  }
 }

@@ -1,0 +1,26 @@
+{
+	"name":	"kalkulus/ComicsScraper",
+	"description":	"Scraping the URLs of web comics so we can show them on one page instead of going to a bunch of websites every day",
+	"keywords":	["url",	"scanner",	"csv"],
+	"homepage":	"https://github.com/kalkulus/ComicsScraper",
+	"license":	"MIT",
+	"authors":	[
+		{
+			"name":	"Dusko Petrovic",
+			"homepage":	"https://github.com/kalkulus",
+			"role":	"Developer"
+		}
+	],	
+	"require":	{		
+	},
+	"require-dev":	{
+	},
+	"suggest":	{
+	},
+	"autoload":	{
+		"psr-4":	{
+			"kalkulus\\Scraper\\":	"src/scraper",
+			"kalkulus\\Comics\\":		"src/comics"
+		}
+	}
+}
