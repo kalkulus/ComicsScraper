@@ -14,7 +14,7 @@ $scraper->setRender(function($comics){
 	}
 });
 
-$comic = new Comic(array(
+$scraper->addPage(new Comic(array(
 	"name" => "dilbert",	
 	"url" => "http://www.dilbert.com/strips/",
 	"homepage" => "http://www.dilbert.com/strips",
@@ -38,10 +38,9 @@ $comic = new Comic(array(
 
 		return false;
 	}
-));
-$scraper->addPage($comic);
+)));
 
-$comic = new Comic(array(
+$scraper->addPage(new Comic(array(
 	"name" => "blicStrip",	
 	"url" => "http://www.blic.rs/Strip",
 	"homepage" => "http://www.blic.rs/Strip",
@@ -64,7 +63,6 @@ $comic = new Comic(array(
 
 		return false;
 	}
-));
-$scraper->addPage($comic);
+)));
 
 $scraper->show();
