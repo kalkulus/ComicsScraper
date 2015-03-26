@@ -18,12 +18,12 @@ class Page {
 		$this->scraper	= $params['scraper'];		
 	}
 
-	public function scrape(){
+	public function scrape($params){
 		if (is_null($this->scraper)){
 			throw Exception('Scraper undefined');
 		}
 		
-		$this->data = $this->scraper($this->getUrl());
+		$this->data = $this->scraper($this->getUrl(), $params);
 	}
 
 

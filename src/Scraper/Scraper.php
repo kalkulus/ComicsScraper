@@ -16,6 +16,11 @@ class Scraper {
 	 */
 	private $render;
 
+    /**
+     * Parameters
+     */
+    private $params;
+
 	public function __construct(){		
 	}
 
@@ -23,7 +28,7 @@ class Scraper {
 		$this->pages[$page->getName()] = $page;
 
 		if (!$this->batch){
-			$page->scrape();
+			$page->scrape($this->params);
 		}
 	}
 
@@ -42,7 +47,7 @@ class Scraper {
 	private function scrape(){
 		if ($this->batch){
 			foreach ($pages as $name => $page) {
-				$page->scrape();
+				$page->scrape($this->params);
 			}
 		}
 	}
@@ -96,11 +101,35 @@ class Scraper {
     }
 
     public function __call($method, $args) {
-     if(isset($this->$method) && is_callable($this->$method)) {
-         return call_user_func_array(
-             $this->$method, 
-             $args
-         );
-     }
-  }
+        if(isset($this->$method) && is_callable($this->$method)) {
+            return call_user_func_array(
+                $this->$method, 
+                $args
+            );
+        }
+    }
+
+    /**
+     * Gets the Params.
+     *
+     * @return mixed
+     */
+    public function getParams()
+    {
+        return $this->params;
+    }
+
+    /**
+     * Sets the Params.
+     *
+     * @param mixed $params the params
+     *
+     * @return self
+     */
+    public function setParams($params)
+    {
+        $this->params = $params;
+
+        return $this;
+    }
 }
