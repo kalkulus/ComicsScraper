@@ -6,6 +6,5 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'kalkulus\\Scraper\\' => array($baseDir . '/src/scraper'),
-    'kalkulus\\Comics\\' => array($baseDir . '/src/comics'),
+    'kalkulus\\' => array($baseDir . '/src'),
 );

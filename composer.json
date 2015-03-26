@@ -19,8 +19,8 @@
 	},
 	"autoload":	{
 		"psr-4":	{
-			"kalkulus\\Scraper\\":	"src/scraper",
-			"kalkulus\\Comics\\":		"src/comics"
+			"kalkulus\\Scraper\\":	"src/Scraper",
+			"kalkulus\\Comics\\":		"src/Comics"
 		}
 	}
 }
