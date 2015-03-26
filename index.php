@@ -9,10 +9,35 @@ use kalkulus\Comics\Comic;
 $scraper = new Scraper();
 
 $scraper->setRender(function($comics){	
-	foreach ($comics as $comic) {
-		echo $comic->getImgUrl()."\n";
-	}
+	
+	include_once('comicsTable.php');
 });
+
+// $scraper->addPage(new Comic(array(
+// 	"name" => "dilbert",	
+// 	"url" => "http://www.dilbert.com/strips/",
+// 	"homepage" => "http://www.dilbert.com/strips",
+// 	"title" => "Dilbert",
+// 	"scraper" => function($url){
+// 		if (empty($url)){
+// 			return false;
+// 		}
+
+// 		$page = file($url);
+// 		if (!$page){
+// 			return false;
+// 		}
+
+// 		foreach($page as $line){
+// 		    $marker=strpos($line,"img-responsive img-comic");
+// 		    if ($marker!=false){		
+// 		        return trim($line);
+// 			}
+// 		}
+
+// 		return false;
+// 	}
+// )));
 
 $scraper->addPage(new Comic(array(
 	"name" => "dilbert",	

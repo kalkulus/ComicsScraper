@@ -40,7 +40,7 @@ class Scraper {
 	}
 
 	private function scrape(){
-		if ($batch){
+		if ($this->batch){
 			foreach ($pages as $name => $page) {
 				$page->scrape();
 			}
