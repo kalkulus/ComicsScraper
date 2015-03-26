@@ -8,4 +8,6 @@ You can see the latest iteration of it in file old.php.
 
 So I thought it's time for some refactoring :)
 
-I know I could've made the more generic Scraper and for example Page classes, and just extend them for ComicScraper and Comic.. for now I'd just like to make it work.
+There are generic Scraper and Page classes in src/scraper dir that can be user with any kind of page/content.
+
+And then there is the Comic class in src/comics dir, that extends Page class with some extra properties.
