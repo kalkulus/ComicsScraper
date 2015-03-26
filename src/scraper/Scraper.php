@@ -20,10 +20,10 @@ class Scraper {
 	}
 
 	public function addPage(Page $page){
-		$pages[$page->getName()] = $page;
+		$this->pages[$page->getName()] = $page;
 
-		if (!$batch){
-			$page->$scrape();
+		if (!$this->batch){
+			$page->scrape();
 		}
 	}
 

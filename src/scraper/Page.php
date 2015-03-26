@@ -4,18 +4,18 @@ namespace kalkulus\Scraper;
 
 class Page {
 
-	private $name = null;
+	protected $name = null;
 
-	private $url = null;
+	protected $url = null;
 
-	private $scraper = null;
+	protected $scraper = null;
 
-	private $data = null;
+	protected $data = null;
 
-	public function __construct($params){
-		$this->$name	= $params['name'];		
-		$this->$url	 	= $params['url'];		
-		$this->$scraper	= $params['scraper'];		
+	public function __construct($params){        
+		$this->name	= $params['name'];		
+		$this->url	 	= $params['url'];		
+		$this->scraper	= $params['scraper'];		
 	}
 
 	public function scrape(){
@@ -23,7 +23,7 @@ class Page {
 			throw Exception('Scraper undefined');
 		}
 		
-		$this->data = $this->scraper();
+		$this->data = $this->scraper($this->getUrl());
 	}
 
 
