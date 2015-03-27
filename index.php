@@ -9,12 +9,12 @@ use kalkulus\Comics\Comic;
 $scraper = new Scraper();
 
 $scraper->setParams(array(
-	'god' => date("Y"),
-	'mes' => date("m"),
-	'godmesdan' => date("ymd"),
-	'mesdangod' => date("mdy"),
-	'danas' => date("Ymd"),
-	'sfdatum' => date("Y-m-d")
+	'year' => date("Y"),
+	'month' => date("m"),
+	'ymd' => date("ymd"),
+	'mdy' => date("mdy"),
+	'_ymd' => date("Ymd"),
+	'y-m-d' => date("Y-m-d")
 ));
 
 $scraper->setRender(function($comics){	
@@ -49,7 +49,7 @@ $scraper->addPage(new Comic(array(
 	"homepage" => "http://www.garfield.com/",
 	"title" => "Garfield",
 	"scraper" => function($url, $params){		
-		return "<img alt=\"Garfield\" src=\"http://images.ucomics.com/comics/ga/".$params['god']."/ga".$params['godmesdan'].".gif\" />";
+		return "<img alt=\"Garfield\" src=\"http://images.ucomics.com/comics/ga/".$params['year']."/ga".$params['ymd'].".gif\" />";
 	}
 )));
 
@@ -59,7 +59,47 @@ $scraper->addPage(new Comic(array(
 	"homepage" => "http://www.garfield.com/",
 	"title" => "Garfield Espanol",
 	"scraper" => function($url, $params){
-		return "<img alt=\"Garfield Espanol\" src=\"http://images.ucomics.com/comics/gh/".$params['god']."/gh".$params['godmesdan'].".gif\" />";
+		return "<img alt=\"Garfield Espanol\" src=\"http://images.ucomics.com/comics/gh/".$params['year']."/gh".$params['ymd'].".gif\" />";
+	}
+)));
+
+$scraper->addPage(new Comic(array(
+	"name" => "sinfest",	
+	"url" => "http://www.sinfest.net",
+	"homepage" => "http://www.sinfest.net",
+	"title" => "Sinfest",
+	"scraper" => function($url, $params){
+		return "<img alt=\"Sinfest\" border=0 src=\"http://www.sinfest.net/btphp/comics/".$params['y-m-d'].".gif\" />";
+	}
+)));
+
+$scraper->addPage(new Comic(array(
+	"name" => "licd",	
+	"url" => "http://leasticoulddo.com",
+	"homepage" => "http://leasticoulddo.com",
+	"title" => "Least I Could Do",
+	"scraper" => function($url, $params){
+		return "<img alt=\"Least I Could Do\" border=0 src=\"http://leasticoulddo.com/wp-content/uploads/".$params['year']."/".$params['month']."/".$params['_ymd'].".gif\" />";
+	}
+)));
+
+$scraper->addPage(new Comic(array(
+	"name" => "girlGenius",	
+	"url" => "http://www.girlgeniusonline.com",
+	"homepage" => "http://www.girlgeniusonline.com",
+	"title" => "Girl Genius",
+	"scraper" => function($url, $params){
+		return "<img src=\"http://www.girlgeniusonline.com/ggmain/strips/ggmain".$params['_ymd'].".jpg\" />";
+	}
+)));
+
+$scraper->addPage(new Comic(array(
+	"name" => "iamarg",	
+	"url" => "http://amarg.com",
+	"homepage" => "http://amarg.com",
+	"title" => "I Am Arg",
+	"scraper" => function($url, $params){
+		return "<img src=\"http://iamarg.com/comics/".$params['y-m-d'].".jpg\" />";
 	}
 )));
 
