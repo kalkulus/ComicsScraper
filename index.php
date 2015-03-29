@@ -18,7 +18,6 @@ $scraper->setParams(array(
 ));
 
 $scraper->setRender(function($comics){	
-	
 	include_once('comicsTable.php');
 });
 
@@ -100,6 +99,41 @@ $scraper->addPage(new Comic(array(
 	"title" => "I Am Arg",
 	"scraper" => function($url, $params){
 		return "<img src=\"http://iamarg.com/comics/".$params['y-m-d'].".jpg\" />";
+	}
+)));
+
+$scraper->addPage(new Comic(array(
+	"name" => "cheerUpEmoKid",	
+	"url" => "http://www.cheerupemokid.com/",
+	"homepage" => "http://www.cheerupemokid.com/",
+	"title" => "Cheer Up Emo Kid",
+	"scraper" => function($url, $params){
+		if (empty($url)){
+			return false;
+		}
+
+		$page = file($url);
+		if (!$page){
+			return false;
+		}
+
+		$comicDivStarted = false;
+		$imgCode = '';
+		foreach($page as $line){
+			if ($comicDivStarted){				
+				$imgCode .= $line;
+				if (stristr($line, '/>') !== false){
+					return $imgCode;
+				}	
+			} else {
+			    $marker=stristr($line,"comic-area");		    
+			    if ($marker!=false){		
+			        $comicDivStarted = true;
+				}
+			}
+		}
+
+		return false;
 	}
 )));
 
