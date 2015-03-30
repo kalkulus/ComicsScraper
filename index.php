@@ -164,6 +164,38 @@ $scraper->addPage(new Comic(array(
 )));
 
 $scraper->addPage(new Comic(array(
+	"name" => "upto4players",	
+	"url" => "http://www.uptofourplayers.com/",
+	"homepage" => "http://www.uptofourplayers.com/",
+	"title" => "Up to Four players",
+	"scraper" => function($url){
+		if (empty($url)){
+			return false;
+		}
+
+		$page = file($url);
+		if (!$page){
+			return false;
+		}
+
+		$comicDivStarted = false;		
+		foreach($page as $line){
+			if ($comicDivStarted){								
+				$tmp = explode('/>', $line);
+				return $tmp[0].'/>';				
+			} else {
+			    $marker=stristr($line,'div id="comic"');
+			    if ($marker!=false){		
+			        $comicDivStarted = true;
+				}
+			}
+		}
+
+		return false;
+	}
+)));
+
+$scraper->addPage(new Comic(array(
 	"name" => "blicStrip",	
 	"url" => "http://www.blic.rs/Strip",
 	"homepage" => "http://www.blic.rs/Strip",
