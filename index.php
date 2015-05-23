@@ -83,6 +83,26 @@ $scraper->addPage(new Comic(array(
 )));
 
 $scraper->addPage(new Comic(array(
+	"name" => "glasbergen",	
+	"url" => "http://www.glasbergen.com",
+	"homepage" => "http://www.glasbergen.com",
+	"title" => "Glasbergen",
+	"scraper" => function($url){
+		if ($glasbergen = file($url)){
+			foreach($glasbergen as $bufer){
+				$lnk = stristr($bufer,"ngg-singlepic");
+				if ($lnk!=false){
+					$tmp = explode('>',$lnk);
+					return '<img class="'.$tmp[0];
+				}
+			}
+		}
+
+		return false;
+	}
+)));
+
+$scraper->addPage(new Comic(array(
 	"name" => "girlGenius",	
 	"url" => "http://www.girlgeniusonline.com",
 	"homepage" => "http://www.girlgeniusonline.com",
@@ -205,7 +225,7 @@ $scraper->addPage(new Comic(array(
 			return false;
 		}
 
-		$blic=fopen("http://www.blic.rs/Strip","r");
+		$blic=fopen($url,"r");
 		while (!feof($blic)){
 		    $bufer=fgets($blic,4096);
 		    preg_match("~(data/files/[^>]+\.jpg)\" title=\"Strip broj[^>]+~",$bufer,$lnk);
@@ -216,6 +236,60 @@ $scraper->addPage(new Comic(array(
 	    }		
 		fclose($blic);
 
+		return false;
+	}
+)));
+
+$scraper->addPage(new Comic(array(
+	"name" => "lookingForGroup",	
+	"url" => "http://www.lfgcomic.com/latest-comic/",
+	"homepage" => "http://www.lfgcomic.com/",
+	"title" => "Looking For Group",
+	"scraper" => function($url){
+		if (empty($url)){
+			return false;
+		}
+
+		$lfg=fopen($url,"r");
+		$next = false;
+		while (!feof($lfg)){
+		    $bufer=fgets($lfg,4096);
+		    $lnk=stristr($bufer,'id="comic"');
+		    if ($lnk!=false){
+				$next = true;
+				continue;
+		    }
+			
+		    if($next){		
+				return $bufer;
+		        break;
+		    }
+		}
+		fclose($lfg);
+		return false;
+	}
+)));
+
+$scraper->addPage(new Comic(array(
+	"name" => "menageA3",	
+	"url" => "http://www.ma3comic.com/",
+	"homepage" => "http://www.ma3comic.com/",
+	"title" => "Menage a 3",
+	"scraper" => function($url){
+		if (empty($url)){
+			return false;
+		}
+
+		if ($ma3 = file($url)){
+			foreach($ma3 as $bufer){
+		        $lnk=strpos($bufer,'938');
+		        if ($lnk!=false){
+	                return $bufer;
+	                break;
+		        }
+			}
+		}
+		fclose($ma3);
 		return false;
 	}
 )));

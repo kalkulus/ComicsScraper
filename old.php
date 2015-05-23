@@ -21,24 +21,24 @@ $port = 8080;
 //$comics=array("uf","gpf","lfi","garfield","sinfest","glasbergen");
 //$comics=array("gpf","lfi","garfield","sinfest","glasbergen","ctrl_alt_del","phd","applegeeks","mota","vg_cats");
 $comics=array(
-"gpf",
-"garfield",
-"garfield_esp",
-"sinfest",
-"licd",
-"glasbergen",
+"gpf", //
+"garfield", //
+"garfield_esp", //
+"sinfest", //
+"licd", //
+"glasbergen", //
 "ctrl_alt_del",
 "cad_sillies",
-"lfg",
-"gg",
-"blic",
+"lfg", //
+"gg", //
+"blic", //
 //"oglaf",
-"ma3",
-"arg",
+"ma3", //
+"arg", //
 "bloop",
 //"wtd",
 //"phd",
-"dilbert",
+"dilbert", //
 "vg_cats");
 
 //ime stripa i link
