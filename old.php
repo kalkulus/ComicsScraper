@@ -27,8 +27,8 @@ $comics=array(
 "sinfest", //
 "licd", //
 "glasbergen", //
-"ctrl_alt_del",
-"cad_sillies",
+"ctrl_alt_del", //
+"cad_sillies", //
 "lfg", //
 "gg", //
 "blic", //

@@ -294,4 +294,54 @@ $scraper->addPage(new Comic(array(
 	}
 )));
 
+$scraper->addPage(new Comic(array(
+	"name" => "cad",	
+	"url" => "http://www.cad-comic.com/cad/",
+	"homepage" => "http://www.ctrlaltdel-online.com",
+	"title" => "CTRL ALT DEL",
+	"scraper" => function($url){
+		if (empty($url)){
+			return false;
+		}
+
+		if ($cad = file($url)){
+			foreach($cad as $bufer){
+				$lnk = strpos($bufer,"/comics/");
+				if ($lnk != false){
+					$tmp = explode('<',$bufer);
+					return '<img '.$tmp[0];
+					break;
+				}
+			}
+		}
+		fclose($cad);
+		return false;
+	}
+)));
+
+$scraper->addPage(new Comic(array(
+	"name" => "cad_sillies",	
+	"url" => "http://www.cad-comic.com/sillies/",
+	"homepage" => "http://www.cad-comic.com/sillies/",
+	"title" => "CTRL ALT DEL",
+	"scraper" => function($url){
+		if (empty($url)){
+			return false;
+		}
+
+		if ($cads = file($url)){
+			foreach($cads as $bufer){
+				$lnk = strpos($bufer,"/comics/");
+				if ($lnk != false){
+					$tmp = explode('<',$bufer);
+					return '<img '.$tmp[0];
+					break;
+				}
+			}
+		}
+		fclose($cads);
+		return false;
+	}
+)));
+
 $scraper->show();
