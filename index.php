@@ -104,7 +104,7 @@ $scraper->addPage(new Comic(array(
 				$lnk = stristr($bufer,"ngg-singlepic");
 				if ($lnk!=false){
 					$tmp = explode('>',$lnk);
-					return '<img onerror=\"this.src='images/comix-zone.jpg'\" class="'.$tmp[0];
+					return "<img onerror=\"this.src='images/comix-zone.jpg'\" class=\"".$tmp[0];
 				}
 			}
 		}
@@ -320,7 +320,7 @@ $scraper->addPage(new Comic(array(
 				$lnk = strpos($bufer,"/comics/");
 				if ($lnk != false){
 					$tmp = explode('<',$bufer);
-					return '<img onerror=\"this.src='images/comix-zone.jpg'\" '.$tmp[0];
+					return "<img onerror=\"this.src='images/comix-zone.jpg'\" ".$tmp[0];
 					break;
 				}
 			}
@@ -345,7 +345,7 @@ $scraper->addPage(new Comic(array(
 				$lnk = strpos($bufer,"/comics/");
 				if ($lnk != false){
 					$tmp = explode('<',$bufer);
-					return '<img onerror=\"this.src='images/comix-zone.jpg'\" '.$tmp[0];
+					return "<img onerror=\"this.src='images/comix-zone.jpg'\" ".$tmp[0];
 					break;
 				}
 			}
