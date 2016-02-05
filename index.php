@@ -48,19 +48,30 @@ $scraper->addPage(new Comic(array(
 	"homepage" => "http://www.garfield.com/",
 	"title" => "Garfield",
 	"scraper" => function($url, $params){		
-		return "<img alt=\"Garfield\" src=\"http://images.ucomics.com/comics/ga/".$params['year']."/ga".$params['ymd'].".gif\" />";
+		return "<img alt=\"Garfield\" src=\"http://garfield.com/uploads/strips/".$params['y-m-d'].".jpg\" />";
 	}
 )));
 
 $scraper->addPage(new Comic(array(
-	"name" => "garfield_esp",	
-	"url" => "",
-	"homepage" => "http://www.garfield.com/",
-	"title" => "Garfield Espanol",
-	"scraper" => function($url, $params){
-		return "<img alt=\"Garfield Espanol\" src=\"http://images.ucomics.com/comics/gh/".$params['year']."/gh".$params['ymd'].".gif\" />";
-	}
+        "name" => "garfield_esp",
+        "url" => "http://www.gocomics.com/espanol/garfieldespanol",
+        "homepage" => "http://www.gocomics.com/espanol/garfieldespanol",
+        "title" => "Garfield Espanol",
+        "scraper" => function($url, $params){
+                if ($garfieldes = file($url)){
+                        foreach($garfieldes as $bufer){
+                                $lnk = stristr($bufer,"class=\"strip");
+                                if ($lnk!=false){
+                                        return "<img ".$lnk;
+                                }
+                        }
+                }
+
+                return false;
+
+        }
 )));
+
 
 $scraper->addPage(new Comic(array(
 	"name" => "sinfest",	
@@ -78,7 +89,7 @@ $scraper->addPage(new Comic(array(
 	"homepage" => "http://leasticoulddo.com",
 	"title" => "Least I Could Do",
 	"scraper" => function($url, $params){
-		return "<img alt=\"Least I Could Do\" border=0 src=\"http://leasticoulddo.com/wp-content/uploads/".$params['year']."/".$params['month']."/".$params['_ymd'].".gif\" />";
+		return "<img alt=\"Least I Could Do\" border=0 src=\"http://leasticoulddo.com/wp-content/uploads/".$params['year']."/".$params['month']."/".$params['_ymd'].".jpg\" />";
 	}
 )));
 
