@@ -33,7 +33,7 @@ $scraper->addPage(new Comic(array(
 			    if ($lnk!=false){
 				   $tmp = explode("/comics/gpf",$bufer);
 				   $tmp = explode("<br",$tmp[1]);
-				   return "<img onerror=\"this.src='src/images/comix-zone.jpg'\" src=\"http://www.gpf-comics.com/comics/gpf".$tmp[0];
+				   return "<img onerror=\"this.src='images/comix-zone.jpg'\" src=\"http://www.gpf-comics.com/comics/gpf".$tmp[0];
 		        }
 	    	}
 		}
@@ -48,7 +48,7 @@ $scraper->addPage(new Comic(array(
 	"homepage" => "http://www.garfield.com/",
 	"title" => "Garfield",
 	"scraper" => function($url, $params){		
-		return "<img onerror=\"this.src='src/images/comix-zone.jpg'\" alt=\"Garfield\" src=\"http://garfield.com/uploads/strips/".$params['y-m-d'].".jpg\" />";
+		return "<img onerror=\"this.src='images/comix-zone.jpg'\" alt=\"Garfield\" src=\"http://garfield.com/uploads/strips/".$params['y-m-d'].".jpg\" />";
 	}
 )));
 
@@ -62,7 +62,7 @@ $scraper->addPage(new Comic(array(
                         foreach($garfieldes as $bufer){
                                 $lnk = stristr($bufer,"class=\"strip");
                                 if ($lnk!=false){
-                                        return "<img onerror=\"this.src='src/images/comix-zone.jpg'\" ".$lnk;
+                                        return "<img onerror=\"this.src='images/comix-zone.jpg'\" ".$lnk;
                                 }
                         }
                 }
@@ -79,7 +79,7 @@ $scraper->addPage(new Comic(array(
 	"homepage" => "http://www.sinfest.net",
 	"title" => "Sinfest",
 	"scraper" => function($url, $params){
-		return "<img onerror=\"this.src='src/images/comix-zone.jpg'\" alt=\"Sinfest\" border=0 src=\"http://www.sinfest.net/btphp/comics/".$params['y-m-d'].".gif\" />";
+		return "<img onerror=\"this.src='images/comix-zone.jpg'\" alt=\"Sinfest\" border=0 src=\"http://www.sinfest.net/btphp/comics/".$params['y-m-d'].".gif\" />";
 	}
 )));
 
@@ -89,7 +89,7 @@ $scraper->addPage(new Comic(array(
 	"homepage" => "http://leasticoulddo.com",
 	"title" => "Least I Could Do",
 	"scraper" => function($url, $params){
-		return "<img onerror=\"this.src='src/images/comix-zone.jpg'\" alt=\"Least I Could Do\" border=0 src=\"http://leasticoulddo.com/wp-content/uploads/".$params['year']."/".$params['month']."/".$params['_ymd'].".jpg\" />";
+		return "<img onerror=\"this.src='images/comix-zone.jpg'\" alt=\"Least I Could Do\" border=0 src=\"http://leasticoulddo.com/wp-content/uploads/".$params['year']."/".$params['month']."/".$params['_ymd'].".jpg\" />";
 	}
 )));
 
@@ -104,7 +104,7 @@ $scraper->addPage(new Comic(array(
 				$lnk = stristr($bufer,"ngg-singlepic");
 				if ($lnk!=false){
 					$tmp = explode('>',$lnk);
-					return '<img onerror=\"this.src='src/images/comix-zone.jpg'\" class="'.$tmp[0];
+					return '<img onerror=\"this.src='images/comix-zone.jpg'\" class="'.$tmp[0];
 				}
 			}
 		}
@@ -119,7 +119,7 @@ $scraper->addPage(new Comic(array(
 	"homepage" => "http://www.girlgeniusonline.com",
 	"title" => "Girl Genius",
 	"scraper" => function($url, $params){
-		return "<img onerror=\"this.src='src/images/comix-zone.jpg'\" src=\"http://www.girlgeniusonline.com/ggmain/strips/ggmain".$params['_ymd'].".jpg\" />";
+		return "<img onerror=\"this.src='images/comix-zone.jpg'\" src=\"http://www.girlgeniusonline.com/ggmain/strips/ggmain".$params['_ymd'].".jpg\" />";
 	}
 )));
 
@@ -129,7 +129,7 @@ $scraper->addPage(new Comic(array(
 	"homepage" => "http://iamarg.com",
 	"title" => "I Am Arg",
 	"scraper" => function($url, $params){
-		return "<img onerror=\"this.src='src/images/comix-zone.jpg'\" src=\"http://iamarg.com/comics/".$params['y-m-d'].".jpg\" />";
+		return "<img onerror=\"this.src='images/comix-zone.jpg'\" src=\"http://iamarg.com/comics/".$params['y-m-d'].".jpg\" />";
 	}
 )));
 
@@ -241,7 +241,7 @@ $scraper->addPage(new Comic(array(
 		    $bufer=fgets($blic,4096);
 		    preg_match("~(data/files/[^>]+\.jpg)\" title=\"Strip broj[^>]+~",$bufer,$lnk);
 		    if (!empty($lnk)){
-		        return "<img onerror=\"this.src='src/images/comix-zone.jpg'\" src=\"http://www.blic.rs/".$lnk[1]."\">";
+		        return "<img onerror=\"this.src='images/comix-zone.jpg'\" src=\"http://www.blic.rs/".$lnk[1]."\">";
 		        
 		    }
 	    }		
@@ -320,7 +320,7 @@ $scraper->addPage(new Comic(array(
 				$lnk = strpos($bufer,"/comics/");
 				if ($lnk != false){
 					$tmp = explode('<',$bufer);
-					return '<img onerror=\"this.src='src/images/comix-zone.jpg'\" '.$tmp[0];
+					return '<img onerror=\"this.src='images/comix-zone.jpg'\" '.$tmp[0];
 					break;
 				}
 			}
@@ -345,7 +345,7 @@ $scraper->addPage(new Comic(array(
 				$lnk = strpos($bufer,"/comics/");
 				if ($lnk != false){
 					$tmp = explode('<',$bufer);
-					return '<img onerror=\"this.src='src/images/comix-zone.jpg'\" '.$tmp[0];
+					return '<img onerror=\"this.src='images/comix-zone.jpg'\" '.$tmp[0];
 					break;
 				}
 			}
