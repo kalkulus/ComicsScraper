@@ -43,16 +43,6 @@ $scraper->addPage(new Comic(array(
 )));
 
 $scraper->addPage(new Comic(array(
-	"name" => "garfield",	
-	"url" => "",
-	"homepage" => "http://www.garfield.com/",
-	"title" => "Garfield",
-	"scraper" => function($url, $params){		
-		return "<img onerror=\"this.src='images/comix-zone.jpg'\" alt=\"Garfield\" src=\"http://garfield.com/uploads/strips/".$params['y-m-d'].".jpg\" />";
-	}
-)));
-
-$scraper->addPage(new Comic(array(
         "name" => "garfield_esp",
         "url" => "http://www.gocomics.com/espanol/garfieldespanol",
         "homepage" => "http://www.gocomics.com/espanol/garfieldespanol",
@@ -72,6 +62,15 @@ $scraper->addPage(new Comic(array(
         }
 )));
 
+$scraper->addPage(new Comic(array(
+	"name" => "garfield",	
+	"url" => "",
+	"homepage" => "http://www.garfield.com/",
+	"title" => "Garfield",
+	"scraper" => function($url, $params){		
+		return "<img onerror=\"this.src='images/comix-zone.jpg'\" alt=\"Garfield\" src=\"https://d1ejxu6vysztl5.cloudfront.net/comics/garfield/".$params['year']."/".$params['y-m-d'].".gif\" width=\"600\" />";
+	}
+)));
 
 $scraper->addPage(new Comic(array(
 	"name" => "sinfest",	
