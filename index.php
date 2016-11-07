@@ -153,7 +153,8 @@ $scraper->addPage(new Comic(array(
 			if ($comicDivStarted){				
 				$imgCode .= $line;
 				if (stristr($line, '/>') !== false){
-					return $imgCode;
+					$line_exploded = explode('/>', $line);
+					return $line_exploded[0].'/>';
 				}	
 			} else {
 			    $marker=stristr($line,"comic-area");		    
