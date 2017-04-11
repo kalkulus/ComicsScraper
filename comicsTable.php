@@ -4,6 +4,7 @@
 	<title>Comics Zone</title>
 </head>
 <style type="text/css">
+
 	tr.comicTitle td {
 		text-align: center;
 		padding: 5px;
@@ -18,9 +19,12 @@
 		font-family: Verdana;		
 	}
   
-  tr.comicImg td {
+  	tr.comicImg td {
 		padding: 10px 0;
 		text-align: center;
+	}
+	tr.comicImg td img {
+		max-width: 900px;
 	}
 </style>
 <body>

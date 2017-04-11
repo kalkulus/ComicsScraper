@@ -21,7 +21,7 @@ $scraper->setRender(function($comics){
 	include_once('comicsTable.php');
 });
 
-$scraper->addPage(new Comic(array(
+$comics['gpf'] = new Comic(array(
 	"name" => "gpf",	
 	"url" => "http://www.gpf-comics.com",
 	"homepage" => "http://www.gpf-comics.com",
@@ -40,9 +40,9 @@ $scraper->addPage(new Comic(array(
 
 		return false;
 	}
-)));
+));
 
-$scraper->addPage(new Comic(array(
+$comics['garfield_es'] = new Comic(array(
         "name" => "garfield_esp",
         "url" => "http://www.gocomics.com/espanol/garfieldespanol",
         "homepage" => "http://www.gocomics.com/espanol/garfieldespanol",
@@ -50,7 +50,7 @@ $scraper->addPage(new Comic(array(
         "scraper" => function($url, $params){
                 if ($garfieldes = file($url)){
                         foreach($garfieldes as $bufer){
-                                $lnk = stristr($bufer,"class=\"strip");
+                                $lnk = stristr($bufer,"item-comic-image");
                                 if ($lnk!=false){
                                         return "<img onerror=\"this.src='images/comix-zone.jpg'\" ".$lnk;
                                 }
@@ -60,9 +60,9 @@ $scraper->addPage(new Comic(array(
                 return false;
 
         }
-)));
+));
 
-$scraper->addPage(new Comic(array(
+$comics['garfield'] = new Comic(array(
 	"name" => "garfield",	
 	"url" => "",
 	"homepage" => "http://www.garfield.com/",
@@ -70,9 +70,9 @@ $scraper->addPage(new Comic(array(
 	"scraper" => function($url, $params){		
 		return "<img onerror=\"this.src='images/comix-zone.jpg'\" alt=\"Garfield\" src=\"https://d1ejxu6vysztl5.cloudfront.net/comics/garfield/".$params['year']."/".$params['y-m-d'].".gif\" width=\"600\" />";
 	}
-)));
+));
 
-$scraper->addPage(new Comic(array(
+$comics['sinfest'] = new Comic(array(
 	"name" => "sinfest",	
 	"url" => "http://www.sinfest.net",
 	"homepage" => "http://www.sinfest.net",
@@ -80,9 +80,9 @@ $scraper->addPage(new Comic(array(
 	"scraper" => function($url, $params){
 		return "<img onerror=\"this.src='images/comix-zone.jpg'\" alt=\"Sinfest\" border=0 src=\"http://www.sinfest.net/btphp/comics/".$params['y-m-d'].".gif\" />";
 	}
-)));
+));
 
-$scraper->addPage(new Comic(array(
+$comics['licd'] = new Comic(array(
 	"name" => "licd",	
 	"url" => "http://leasticoulddo.com",
 	"homepage" => "http://leasticoulddo.com",
@@ -90,29 +90,34 @@ $scraper->addPage(new Comic(array(
 	"scraper" => function($url, $params){
 		return "<img onerror=\"this.src='images/comix-zone.jpg'\" alt=\"Least I Could Do\" border=0 src=\"http://leasticoulddo.com/wp-content/uploads/".$params['year']."/".$params['month']."/".$params['_ymd'].".jpg\" />";
 	}
-)));
+));
 
-$scraper->addPage(new Comic(array(
+$comics['glasbergen'] = new Comic(array(
 	"name" => "glasbergen",	
 	"url" => "http://www.glasbergen.com",
 	"homepage" => "http://www.glasbergen.com",
 	"title" => "Glasbergen",
 	"scraper" => function($url){
 		if ($glasbergen = file($url)){
+			$next = false;
 			foreach($glasbergen as $bufer){
+				if ($next){
+					return "<img onerror=\"this.src='images/comix-zone.jpg'\"".$bufer.">";
+					break;
+				};
 				$lnk = stristr($bufer,"ngg-singlepic");
 				if ($lnk!=false){
-					$tmp = explode('>',$lnk);
-					return "<img onerror=\"this.src='images/comix-zone.jpg'\" class=\"".$tmp[0];
+					$next = true;
+					continue;					
 				}
 			}
 		}
 
 		return false;
 	}
-)));
+));
 
-$scraper->addPage(new Comic(array(
+$comics['gg'] = new Comic(array(
 	"name" => "girlGenius",	
 	"url" => "http://www.girlgeniusonline.com",
 	"homepage" => "http://www.girlgeniusonline.com",
@@ -120,9 +125,9 @@ $scraper->addPage(new Comic(array(
 	"scraper" => function($url, $params){
 		return "<img onerror=\"this.src='images/comix-zone.jpg'\" src=\"http://www.girlgeniusonline.com/ggmain/strips/ggmain".$params['_ymd'].".jpg\" />";
 	}
-)));
+));
 
-$scraper->addPage(new Comic(array(
+$comics['iamarg'] = new Comic(array(
 	"name" => "iamarg",	
 	"url" => "http://iamarg.com",
 	"homepage" => "http://iamarg.com",
@@ -130,9 +135,9 @@ $scraper->addPage(new Comic(array(
 	"scraper" => function($url, $params){
 		return "<img onerror=\"this.src='images/comix-zone.jpg'\" src=\"http://iamarg.com/comics/".$params['y-m-d'].".jpg\" />";
 	}
-)));
+));
 
-$scraper->addPage(new Comic(array(
+$comics['cheerupemokid'] = new Comic(array(
 	"name" => "cheerUpEmoKid",	
 	"url" => "http://www.cheerupemokid.com/",
 	"homepage" => "http://www.cheerupemokid.com/",
@@ -166,9 +171,9 @@ $scraper->addPage(new Comic(array(
 
 		return false;
 	}
-)));
+));
 
-$scraper->addPage(new Comic(array(
+$comics['dilbert'] = new Comic(array(
 	"name" => "dilbert",	
 	"url" => "http://www.dilbert.com/strips/",
 	"homepage" => "http://www.dilbert.com/strips",
@@ -192,9 +197,9 @@ $scraper->addPage(new Comic(array(
 
 		return false;
 	}
-)));
+));
 
-$scraper->addPage(new Comic(array(
+$comics['upto4players'] = new Comic(array(
 	"name" => "upto4players",	
 	"url" => "http://www.uptofourplayers.com/",
 	"homepage" => "http://www.uptofourplayers.com/",
@@ -224,12 +229,12 @@ $scraper->addPage(new Comic(array(
 
 		return false;
 	}
-)));
+));
 
-$scraper->addPage(new Comic(array(
+$comics['blicStrip'] = new Comic(array(
 	"name" => "blicStrip",	
-	"url" => "http://www.blic.rs/Strip",
-	"homepage" => "http://www.blic.rs/Strip",
+	"url" => "http://www.blic.rs",
+	"homepage" => "http://www.blic.rs",
 	"title" => "Blic Strip",
 	"scraper" => function($url){
 		if (empty($url)){
@@ -237,23 +242,32 @@ $scraper->addPage(new Comic(array(
 		}
 
 		$blic=fopen($url,"r");
-		while (!feof($blic)){
+		while (!feof($blic)){			
 		    $bufer=fgets($blic,4096);
-		    preg_match("~(data/files/[^>]+\.jpg)\" title=\"Strip broj[^>]+~",$bufer,$lnk);
-		    if (!empty($lnk)){
-		        return "<img onerror=\"this.src='images/comix-zone.jpg'\" src=\"http://www.blic.rs/".$lnk[1]."\">";
-		        
-		    }
+		    $lnk=stristr($bufer,'http://www.blic.rs/blicstrip');
+		    if ($lnk!=false){
+		    	$e = explode('"', $lnk);
+				$blicStrip = fopen($e[0], "r");
+				while (!feof($blicStrip)){
+				    $bufer=fgets($blicStrip,4096);
+				    $lnk=stristr($bufer,'class="mainPhotoImg"');
+				    if ($lnk!=false){
+				    	$lnk = str_replace("//", "http://", $lnk);
+				    	return "<img ".$lnk;
+				    }
+		    	}
+				break;
+		    }		    
 	    }		
 		fclose($blic);
 
 		return false;
 	}
-)));
+));
 
-$scraper->addPage(new Comic(array(
+$comics['lfg'] = new Comic(array(
 	"name" => "lookingForGroup",	
-	"url" => "http://www.lfgcomic.com/latest-comic/",
+	"url" => "http://www.lfg.co/latest-comic/",
 	"homepage" => "http://www.lfgcomic.com/",
 	"title" => "Looking For Group",
 	"scraper" => function($url){
@@ -265,23 +279,23 @@ $scraper->addPage(new Comic(array(
 		$next = false;
 		while (!feof($lfg)){
 		    $bufer=fgets($lfg,4096);
-		    $lnk=stristr($bufer,'id="comic"');
-		    if ($lnk!=false){
-				$next = true;
-				continue;
-		    }
-			
 		    if($next){		
 				return $bufer;
 		        break;
 		    }
+
+		    $lnk=stristr($bufer,'class="tda-peek"');
+		    if ($lnk!=false){
+				$next = true;
+				continue;
+		    }					    
 		}
 		fclose($lfg);
 		return false;
 	}
-)));
+));
 
-$scraper->addPage(new Comic(array(
+$comics['menageA3'] = new Comic(array(
 	"name" => "menageA3",	
 	"url" => "http://www.ma3comic.com/",
 	"homepage" => "http://www.ma3comic.com/",
@@ -293,7 +307,7 @@ $scraper->addPage(new Comic(array(
 
 		if ($ma3 = file($url)){
 			foreach($ma3 as $bufer){
-		        $lnk=strpos($bufer,'938');
+		        $lnk=strpos($bufer,'cc-comic');
 		        if ($lnk!=false){
 	                return $bufer;
 	                break;
@@ -303,9 +317,9 @@ $scraper->addPage(new Comic(array(
 		fclose($ma3);
 		return false;
 	}
-)));
+));
 
-$scraper->addPage(new Comic(array(
+$comics['cad'] = new Comic(array(
 	"name" => "cad",	
 	"url" => "http://www.cad-comic.com/cad/",
 	"homepage" => "http://www.ctrlaltdel-online.com",
@@ -328,9 +342,9 @@ $scraper->addPage(new Comic(array(
 		fclose($cad);
 		return false;
 	}
-)));
+));
 
-$scraper->addPage(new Comic(array(
+$comics['cad_sillies'] = new Comic(array(
 	"name" => "cad_sillies",	
 	"url" => "http://www.cad-comic.com/sillies/",
 	"homepage" => "http://www.cad-comic.com/sillies/",
@@ -353,6 +367,25 @@ $scraper->addPage(new Comic(array(
 		fclose($cads);
 		return false;
 	}
-)));
+));
+
+$active = [
+'gpf',
+'garfield_es',
+'garfield',
+'sinfest',
+'licd',
+'glasbergen',
+'dilbert',
+'blicStrip',
+'menageA3',
+'lfg',
+'upto4players',
+'cheerupemokid'
+];
+
+foreach ($active as $comic_name) {
+	$scraper->addPage($comics[$comic_name]);
+}
 
 $scraper->show();
