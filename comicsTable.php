@@ -24,7 +24,7 @@
 		text-align: center;
 	}
 	tr.comicImg td img {
-		max-width: 900px;
+		max-width: 1200px;
 	}
 </style>
 <body>
