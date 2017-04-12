@@ -380,8 +380,8 @@ $active = [
 'blicStrip',
 'menageA3',
 'lfg',
-'upto4players',
-'cheerupemokid'
+'cheerupemokid',
+'upto4players'
 ];
 
 foreach ($active as $comic_name) {
