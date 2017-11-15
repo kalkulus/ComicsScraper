@@ -84,12 +84,23 @@ $comics['sinfest'] = new Comic(array(
 
 $comics['licd'] = new Comic(array(
 	"name" => "licd",	
-	"url" => "http://leasticoulddo.com",
+	"url" => "http://leasticoulddo.com/comic/",
 	"homepage" => "http://leasticoulddo.com",
 	"title" => "Least I Could Do",
 	"scraper" => function($url, $params){
-		return "<img onerror=\"this.src='images/comix-zone.jpg'\" alt=\"Least I Could Do\" border=0 src=\"http://leasticoulddo.com/wp-content/uploads/".$params['year']."/".$params['month']."/".$params['_ymd'].".jpg\" />";
-	}
+		$comicUrl = $url.$params['_ymd'];
+		echo "LICD URL: " . $comicUrl;
+		if ($licd = file($comicUrl)){
+			$next = false;
+			foreach($licd as $bufer){				
+				$lnk = stristr($bufer,"<img class=\"comic\"");
+				if ($lnk!=false){
+					return $bufer;
+				}
+			}
+		}
+
+		return false;		
 ));
 
 $comics['glasbergen'] = new Comic(array(
